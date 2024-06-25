@@ -1,113 +1,104 @@
-Sure, here's a README file for your repository:
-
-
 # Combine Text Files
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS-lightgrey)
+Combine Text Files is a command-line tool that reads all text files in a directory and its subdirectories and combines them into a single file with delimiters. This tool is helpful for aggregating project files before uploading to AI tools like ChatGPT, Gemini, or Claude.
 
 ## Description
 
-Combine Text Files is a Python script that reads all text files in a directory and its subdirectories and combines them into a single file with delimiters. This tool is helpful for aggregating project files before uploading to AI tools like ChatGPT, Gemini, or Claude.
+Combine Text Files is designed to simplify the process of consolidating text files from multiple directories into one comprehensive file. This is particularly useful when preparing data for machine learning models, generating comprehensive logs, or organizing documentation.
 
 ## Features
 
-- Recursively scans directories for text files
-- Combines text file contents into a single file with delimiters
-- Cross-platform: Supports Linux (Snapcraft) and macOS (Homebrew)
+- **Recursive Directory Scanning**: Scans all subdirectories to find text files.
+- **Flexible File Detection**: Detects and reads any file containing readable text.
+- **Customizable Delimiters**: Appends file content with clear delimiters for easy separation.
 
 ## Installation
 
-### Linux (Snapcraft)
+### Prerequisites
 
-1. **Install Snapcraft**:
-   ```bash
-   sudo apt update
-   sudo apt install snapd
-   ```
+- **Homebrew**: Ensure you have Homebrew installed on your system. If not, you can install it by following the instructions on the [Homebrew website](https://brew.sh).
 
-2. **Install Combine Text Files**:
-   ```bash
-   sudo snap install combine-text-files
-   ```
+### Steps
 
-### macOS (Homebrew)
+1. **Tap the Repository**
 
-1. **Install Homebrew**:
-   ```bash
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   ```
+   Add the custom Homebrew tap for Combine Text Files:
 
-2. **Add the Homebrew Tap**:
    ```bash
    brew tap orhanerday/tools
    ```
 
-3. **Install Combine Text Files**:
+2. **Install the Tool**
+
+   Install Combine Text Files using Homebrew:
+
    ```bash
-   brew install combine-text-files
+   brew install combine_text_files
    ```
 
 ## Usage
 
-Navigate to the directory you want to scan and run the script:
+Once installed, you can use Combine Text Files directly from the command line. Navigate to the directory containing the text files you want to combine, and run the command:
 
 ```bash
 combine-text-files
 ```
 
-The script will create a `single_file.txt` in the current directory, containing the combined contents of all text files found.
+This will create a file named `single_file.txt` in the current directory, containing the combined contents of all text files found in the directory and its subdirectories, with each file's content separated by delimiters.
 
-## Example
+### Example
 
-Given a directory structure:
+Suppose you have the following directory structure:
 
 ```
 Project/
-|-- file1.py
-|-- subdir1/
-    |-- file2.js
-    |-- subdir2/
-        |-- file3.cs
+│
+├── file1.py
+├── file2.txt
+├── subdir1/
+│   ├── file3.md
+│   └── file4.js
+└── subdir2/
+    └── file5.java
 ```
 
-Running `combine-text-files` will produce a `single_file.txt` with the contents of `file1.py`, `file2.js`, and `file3.cs` separated by delimiters.
+Running `combine-text-files` in the `Project` directory will produce `single_file.txt` with the content:
 
-## Development
-
-### Prerequisites
-
-- Python 3.x
-
-### Cloning the Repository
-
-```bash
-git clone https://github.com/orhanerday/combine-text-files.git
-cd combine-text-files
 ```
-
-### Running the Script Locally
-
-```bash
-python combine_text_files.py
+File: file1.py
+------
+<content of file1.py>
+------
+File: file2.txt
+------
+<content of file2.txt>
+------
+File: file3.md
+------
+<content of file3.md>
+------
+File: file4.js
+------
+<content of file4.js>
+------
+File: file5.java
+------
+<content of file5.java>
+------
 ```
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request.
+Contributions are welcome! If you have suggestions for improvements or new features, feel free to open an issue or submit a pull request.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Acknowledgements
-
-- Inspired by the need to aggregate project files for AI tools.
+Combine Text Files is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
 ## Contact
 
-For any inquiries, please contact [your-email@example.com](mailto:your-email@example.com).
+For any inquiries or issues, please contact Orhan Erday at orhan@duck.com.
 
-```
+---
 
-Replace `orhanerday` with your actual GitHub username and `your-email@example.com` with your contact email. This README covers the installation and usage for both Linux and macOS users, provides an example, and includes standard open-source project sections.
+Feel free to modify any section as needed. This README provides a comprehensive guide for users to understand, install, and use the Combine Text Files tool.
