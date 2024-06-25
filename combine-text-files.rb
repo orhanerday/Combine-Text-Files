@@ -2,7 +2,7 @@ class CombineTextFiles < Formula
     desc "Combine text files in a directory into a single file"
     homepage "https://github.com/orhanerday/combine-text-files"
     url "https://github.com/orhanerday/combine-text-files/archive/refs/tags/v1.0.tar.gz"
-    sha256 "1f76898e1b2beff6404b4106a00277e54e4cde85c4d60c9d006e8579e3d98c45"
+    sha256 "a638a01766b49cb013fd3c7ee84aae979d5f9ac7923f2f5d03c790bde1950fda"
     license "MIT"
   
     depends_on "python@3.9"
