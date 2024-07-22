@@ -24,7 +24,7 @@ int is_text_file(const char *file_path) {
 }
 
 // Function to read and append files
-void read_and_append_files(const char *input_folder, FILE *out_file) {
+void read_and_append_files(const char *input_folder, FILE *out_file, const char *output_file_name, const char *relative_path) {
     struct dirent *entry;
     DIR *dp = opendir(input_folder);
     if (dp == NULL) {
@@ -44,11 +44,21 @@ void read_and_append_files(const char *input_folder, FILE *out_file) {
             continue;
         }
 
-        if (S_ISDIR(statbuf.st_mode)) {
-            read_and_append_files(file_path, out_file);
+        char new_relative_path[1024];
+        if (relative_path[0] == '\0') {
+            snprintf(new_relative_path, sizeof(new_relative_path), "%s", entry->d_name);
         } else {
+            snprintf(new_relative_path, sizeof(new_relative_path), "%s/%s", relative_path, entry->d_name);
+        }
+
+        if (S_ISDIR(statbuf.st_mode)) {
+            read_and_append_files(file_path, out_file, output_file_name, new_relative_path);
+        } else {
+            // Skip the output file itself
+            if (strcmp(entry->d_name, output_file_name) == 0) continue;
+
             if (is_text_file(file_path)) {
-                fprintf(out_file, "File: %s\n", entry->d_name);
+                fprintf(out_file, "File: %s\n", new_relative_path);
                 fprintf(out_file, "------\n");
 
                 FILE *in_file = fopen(file_path, "r");
@@ -85,7 +95,8 @@ int main() {
         return 1;
     }
 
-    read_and_append_files(input_folder, out_file);
+    // Pass the name of the output file and an empty initial relative path to the function
+    read_and_append_files(input_folder, out_file, "single_file.txt", "");
     fclose(out_file);
 
     printf("All text files from '%s' have been combined into '%s'.\n", input_folder, output_file_path);
